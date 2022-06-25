@@ -8,9 +8,9 @@ export default function Weather(props) {
   const loading = useRef(false);
 
   function handleResponse(response) {
-    console.log(response);
     loading.current = false;
-    const w = {
+
+    setWeatherData({
       ready: true,
       temperature: Math.round(response.data.main.temp),
       city: response.data.name,
@@ -19,8 +19,7 @@ export default function Weather(props) {
       description: response.data.weather[0].description,
       date: new Date(response.data.dt * 1000),
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-    };
-    setWeatherData(w);
+    });
   }
 
   useEffect(() => {
