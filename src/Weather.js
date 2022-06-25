@@ -10,7 +10,7 @@ export default function Weather(props) {
 
   function handleResponse(response) {
     loading.current = false;
-    console.log(response);
+
     setWeatherData({
       ready: true,
       temperature: Math.round(response.data.main.temp),
@@ -32,7 +32,12 @@ export default function Weather(props) {
     loading.current = true;
     const apiKey = "f8c936db9cec49b0a939c31814fb3e34";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    axios
+      .get(apiUrl)
+      .then(handleResponse)
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleCityChange(event) {
