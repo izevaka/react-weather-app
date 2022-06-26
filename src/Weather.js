@@ -1,18 +1,19 @@
 import axios from "axios";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
-  const [weatherData, setWeatherData] = useState({ ready: false });
+  const [weatherData, setWeatherData] = useState({
+    ready: false,
+    loading: false,
+  });
   const [city, setCity] = useState(props.defaultCity);
-  const loading = useRef(false);
 
   function handleResponse(response) {
-    loading.current = false;
-
     setWeatherData({
       ready: true,
+      loading: false,
       temperature: response.data.main.temp,
       city: response.data.name,
       wind: Math.round(response.data.wind.speed * 3.6),
@@ -31,7 +32,11 @@ export default function Weather(props) {
   }
 
   function search() {
-    loading.current = true;
+    setWeatherData({
+      ready: false,
+      loading: true,
+    });
+
     const apiKey = "f8c936db9cec49b0a939c31814fb3e34";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios
@@ -75,7 +80,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    if (!loading.current) {
+    if (!weatherData.loading) {
       search();
     }
   }

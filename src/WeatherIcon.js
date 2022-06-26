@@ -29,7 +29,6 @@ export default function WeatherIcon(props) {
       "50n": { type: "Fog", time: "Night" },
     };
     if (renderDiv.current) {
-      console.log("weather code", props.code);
       renderDiv.current.innerHTML = "";
       const icon = new AnimatedWeatherIcon(renderDiv.current);
       const mapping = codeMapping[props.code];
