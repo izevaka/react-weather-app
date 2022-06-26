@@ -20,7 +20,8 @@ export default function Weather(props) {
       description: response.data.weather[0].description,
       date: new Date(response.data.dt * 1000),
       feelsLike: Math.round(response.data.main.feels_like),
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
     });
   }
 
@@ -70,7 +71,7 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <WeatherInfo weatherData={weatherData} />
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {

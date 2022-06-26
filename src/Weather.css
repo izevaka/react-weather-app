@@ -25,9 +25,14 @@
     font-size: 16px;
 }
 
-.Weather img {
+.Weather img, .Weather svg {
     height: 60px;
     width: 60px;
+    display: inline-block;
+}
+
+.Weather .AnimatedWeatherIcon{
+    display: inline;
 }
 
 .temp-unit {
