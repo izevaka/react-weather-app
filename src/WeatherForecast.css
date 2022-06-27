@@ -1,0 +1,19 @@
+.WeatherForecast {
+  text-align: center;
+}
+
+/* .WeatherForecast .day {} */
+
+/* .WeatherForecast .temperatures {} */
+
+.WeatherForecast .temperatures .min{
+  opacity: 0.6;
+  margin-left: 2px;
+}
+
+.WeatherForecast svg {
+  height: 42px;
+  width: 42px;
+}
+
+/* .WeatherForecast .temperatures .max{} */
