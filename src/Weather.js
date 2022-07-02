@@ -14,7 +14,6 @@ export default function Weather(props) {
   const units = "metric";
 
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       loading: false,
@@ -43,12 +42,12 @@ export default function Weather(props) {
     });
 
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-    // axios
-    //   .get(apiUrl)
-    //   .then(handleResponse)
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .get(apiUrl)
+      .then(handleResponse)
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleCityChange(event) {
@@ -82,7 +81,7 @@ export default function Weather(props) {
         </form>
         <WeatherInfo data={weatherData} />
         <WeatherForecast
-          coordinates={weatherData.coordinates}
+          coords={weatherData.coordinates}
           units={units}
           apiKey={apiKey}
         />
